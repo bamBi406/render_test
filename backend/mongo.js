@@ -1,5 +1,4 @@
-const { default: mongoose } = require('mongoose')
-const mongooose = require('mongoose')
+const mongoose = require('mongoose')
 
 if (process.argv.length < 3) {
     console.log('give password as argument')
@@ -14,14 +13,14 @@ retryWrites=true&w=majority&appName=Cluster0`
 
 mongoose.set('strictQuery', false)
 
-mongooose.connect(url)
+mongoose.connect(url)
 
-const noteSchema = new mongooose.Schema({
+const noteSchema = new mongoose.Schema({
     content: String,
     important: Boolean
 })
 
-const Note = mongooose.model('Note', noteSchema)
+const Note = mongoose.model('Note', noteSchema)
 
 /* const note = new Note({
     content: 'HTML is easy',
@@ -30,12 +29,12 @@ const Note = mongooose.model('Note', noteSchema)
 
 note.save().then(res => {
     console.log('note saved!')
-    mongooose.connection.close()
+    mongoose.connection.close()
 }) */ 
 
 Note.find({}).then(res => {
     res.forEach(note => {
         console.log(note)
     })
-    mongooose.connection.close()
+    mongoose.connection.close()
 })
