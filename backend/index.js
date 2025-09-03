@@ -25,7 +25,7 @@ const errorHandler = (error, request, response, next) => {
     console.error(error.message)
 
     if (error.name === 'CastError') {
-        return response.status(400).send({ error: 'malformated id'})
+        return response.status(400).send({ error: 'malformated id' })
     } else if (error.name === 'ValidationError') {
         return response.status(400).json({ error: error.message })
     }
@@ -43,7 +43,7 @@ app.get('/', (request, response) => {
 
 app.get('/api/notes', (request, response) => {
     Note.find({}).then(notes => {
-            response.json(notes)
+        response.json(notes)
     })
 })
 
@@ -102,7 +102,7 @@ app.put('/api/notes/:id', (request, response, next) => {
 })
 
 const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+    response.status(404).send({ error: 'unknown endpoint' })
 }
 
 app.use(unknownEndpoint)
